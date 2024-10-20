@@ -5,12 +5,12 @@ import './Style/parkInfo.css';
  * Renders the ParkInfo component page.
  * @component
  * @module ParkInfo
- * 
+ *
  * @returns {JSX.Element} The rendered ParkInfo component.
  */
 function ParkInfo(){
     return(
-        <div className="park-info-parent">
+        <div>
             <ParkInfoComponent />
         </div>
     );

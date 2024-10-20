@@ -11,7 +11,7 @@
  * @summary the entry point of the React application
  * @module index
  * @requires react
- * 
+ *
  */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -35,10 +35,10 @@ root.render(
                 <Route path="/ParkInfo" element={<ParkInfo />} />
                 <Route path="/ParkPlan" element={<ParkPlan />} />
             </Routes>
-            <Footer></Footer>
+            <Footer />
         </Router>
 
-      
+
     </div>
 );
 

@@ -2,7 +2,7 @@
  * Renders a navigation bar component with links to different pages.
  * @module Navbar
  * @memberof GlobalComponents
- * 
+ *
  * @returns {JSX.Element} The rendered navigation bar component.
  */
 import React from 'react'
@@ -11,11 +11,8 @@ import '../Style/navbar.css'
 import tree from './tree.png'
 const Navbar = () => {
     return (
-        <nav className="nav-bar">
-            <ul>
-                <li className = "header">
-                    <NavLink to="/">Exploring National Parks</NavLink>
-                </li>
+        <nav className="nav-bar sticky top-0 z-10">
+            <ul className='flex max-h-full w-full m-0 p-0 justify-start bg-[#3a4937] list-none'>
                 <li className = "logo">
                     <img src = {tree} alt = "tree"/>
                 </li>

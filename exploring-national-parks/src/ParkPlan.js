@@ -10,7 +10,6 @@ import Banner from './ParkPlan/Components/Banner'
 const ParkPlan = () => {
   return (
     <div className="park-plan">
-      
       <Banner/>
       <ParkPlanParent />
     </div>

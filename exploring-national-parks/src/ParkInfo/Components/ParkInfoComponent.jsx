@@ -11,10 +11,11 @@ import React, { useState, useEffect } from 'react';
 import { ParkInfo } from '../Functionality/ParkInfo'; // Importing the functionality
 import '../../Style/parkInfo.css';
 import ParkVideos from './ParkVideos';
+import { Link } from 'react-router-dom';
 
 function ParkInfoComponent() {
     const [parkJSON, setParks] = useState([]);
-    
+
     var url = new URL(window.location);
     var page = 0;
     page = url.searchParams.get("page");
@@ -26,7 +27,7 @@ function ParkInfoComponent() {
         pageDown = 0;
 
     const parkCode = url.searchParams.get("parkCode");
-    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -51,10 +52,10 @@ function ParkInfoComponent() {
         return (
             <div className="top-padding-info">
                 <div className='all-parks-info-welcome'>
-                       <center>
-                            <h1 id="park-info-title">Park Information Page</h1>
-                            <h2>Browse through all the US National Parks!</h2>
-                        </center>
+                    <center>
+                        <h1 id="park-info-title">Park Information Page</h1>
+                        <h2>Browse through all the US National Parks!</h2>
+                    </center>
                 </div>
                 <br></br>
                 <div className = 'parkInfo'>
@@ -69,7 +70,7 @@ function ParkInfoComponent() {
                                         <p className="learn-more-name">{park.fullName}</p>
                                         <p>{park.states}</p>
                                     </div>
-                                    
+
                                 </div>
                                     <img src={park.images.length !== 0  ? park.images[0].url : ''} alt='' width='100' height='300'/>
                             </div>
@@ -89,18 +90,24 @@ function ParkInfoComponent() {
             <div className='park-info'>
                     {parkJSON?.map((park) => (
                         <>
-                        <div key={park.id} className="parkInfo" style={{ backgroundImage: 'url(' + park.images[0].url + ')', backgroundSize: 'auto' }}>
-                            <div className='park-info-welcome'>
+                        <div key={park.id} className="parkInfo">
+                            <div
+                            className='park-info-welcome object-contain h-fit'
+                            style={{ backgroundImage: 'url(' + park.images[0].url + ')', backgroundSize: 'auto' }}>
                                 <center>
                                     <h1 id="info-title">{park.fullName}</h1>
                                     <h2>Park Information</h2>
                                     <address>{park.addresses[0].line1}<br></br>
-                                        {park.addresses[0].city}, 
+                                        {park.addresses[0].city},
                                         {park.addresses[0].stateCode}<br></br>
                                     </address>
                                     <br></br>
                                 </center>
                             </div>
+
+                            <img
+                            className='max-h-80 object-cover'
+                            src={park.images[0].url} alt={park.fullName + " image"} />
 
                             <br></br>
 
@@ -133,14 +140,22 @@ function ParkInfoComponent() {
                             </center>
 
                             <br></br>
-                            
+
                             <div className='activities-list'>
                                 {park.activities?.map((activity) =>(<>
                                 <div className='activity'><p key={activity.id}>{activity.name}</p></div></>))}
                             </div>
 
-                            
-                            
+                            <div>
+                                <center>
+                                    <a
+                                    className="flex w-fit place-self-center items-center gap-2 bg-white rounded-full shadow-sm text-md text-indigo-600 font-semibold py-4 px-8 transition-all duration-500"
+                                    href={`https://www.google.com/maps/search/?api=1&query=${park.latitude},${park.longitude}`}
+                                    target='_blank'>
+                                        Open in Google Maps
+                                    </a>
+                                </center>
+                            </div>
                         </div>
                         </>
                     ))}
